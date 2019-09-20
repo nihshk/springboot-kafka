@@ -2,6 +2,8 @@ package org.smartworld.spring.kafka.controller;
 
 
 import org.smartworld.spring.kafka.model.MessageModel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,7 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/kafka")
 public class KafkaController {
 
+    @Autowired
+    private KafkaTemplate<String, MessageModel> kafkaTemplate;
+
     public void postMessage(@RequestBody MessageModel messageModel){
 
+        kafkaTemplate.send("msgTopic", messageModel);
     }
 }
