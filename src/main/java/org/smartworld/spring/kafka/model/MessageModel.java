@@ -5,6 +5,9 @@ public class MessageModel {
     private String id;
     private String name;
 
+    public MessageModel() {
+    }
+
     public String getId() {
         return id;
     }
@@ -24,5 +27,13 @@ public class MessageModel {
     public MessageModel(String id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "MessageModel{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

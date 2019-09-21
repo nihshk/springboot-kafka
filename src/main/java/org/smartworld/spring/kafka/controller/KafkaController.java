@@ -3,6 +3,7 @@ package org.smartworld.spring.kafka.controller;
 
 import org.smartworld.spring.kafka.model.MessageModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,4 +22,10 @@ public class KafkaController {
 
         kafkaTemplate.send("msgTopic", messageModel);
     }
+
+    @KafkaListener(topics = "msgTopic")
+    public void consumeKafka(@org.jetbrains.annotations.NotNull MessageModel messageModel){
+        System.out.println(messageModel.toString());
+    }
+
 }
